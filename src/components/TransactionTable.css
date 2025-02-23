@@ -1,142 +1,148 @@
-/* src/components/TransactionTable.css */
+
+
 .transaction-table-ark-table-container {
   width: 80vw;
   min-height: 60vh;
   margin: 0 auto;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   overflow-x: visible;
-  font-family: 'Rubik', sans-serif; /* Aplicamos Rubik al contenedor */
+  font-family: 'Rubik', sans-serif;
+}
+
+.transaction-table-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.transaction-table-search {
+  flex: 1;
+  max-width: 300px;
+}
+
+.transaction-table-pagination-container {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+}
+
+.transaction-table-datepicker {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  max-width: 300px;
+  position: relative;
 }
 
 .transaction-table-ark-table {
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-collapse: separate;
+  border-spacing: 0;
+  box-shadow: 0 4px 6px var(--color-button-shadow);
   border-radius: 1.5rem;
   overflow: hidden;
-  border: 1px solid #f5f5f5;
-  width: 80vw;
-  text-align: center;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-white);
 }
 
 .transaction-table-ark-table-header {
-  background-color: #f0f0f0;
-  padding: 0.75rem;
-  font-weight: 500; /* Reducimos el grosor a 500 */
+  background-color: var(--color-header-bg);
+  padding: 1rem;
+  font-weight: 500;
+  font-size: 1.2em;
   cursor: pointer;
-  color: #333; /* Cambiamos el color del texto */
+  color: var(--color-dark);
+  text-align: center;
 }
 
 .transaction-table-ark-table-row:nth-child(even) {
-  background-color: #f9f9f9;
+  background-color: var(--color-light-gray);
 }
 
 .transaction-table-ark-table-cell {
-  padding: 0.75rem;
-  border-top: 1px solid #ddd;
-  color: #555; /* Cambiamos el color del texto */
+  padding: 1rem;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-dark-black);
+  text-align: center;
 }
 
 .transaction-table-ghost {
-  opacity: 0.7; /* Aumentamos la opacidad */
-  background: #c8ebfb;
-  border: 1px dashed #7abeff;
+  opacity: 0.7;
+  background: var(--color-button-hover);
+  border: 1px dashed var(--selected);
 }
 
-.transaction-table-pagination-container {
-  display: flex;
-  justify-content: center;
-  margin: 1rem 0;
-  font-family: 'Rubik', sans-serif; /* Aplicamos Rubik al contenedor de la paginación */
+.toggle-chart-button {
+  background-color: var(--color-button-shadow);
+  color: #ffffff;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  transition: all 0.2s;
+  font-size: 0.9rem;
+  font-family: 'Rubik', sans-serif;
+  margin-right: 1rem;
 }
 
-.transaction-table-ark-table-container [data-part="root"] {
+.toggle-chart-button:hover {
+  background-color: var(--selected);
+}
+
+.transaction-table-pagination-container [data-part="root"] {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.5rem;
 }
 
-.transaction-table-ark-table-container [data-part="item"] {
+.transaction-table-pagination-container [data-part="item"],
+.transaction-table-pagination-container [data-part="ellipsis"],
+.transaction-table-pagination-container .transaction-table-ellipsis-button,
+.transaction-table-pagination-container [data-part="prev-trigger"],
+.transaction-table-pagination-container [data-part="next-trigger"] {
   padding: 0.5rem 0.75rem;
-  border: 1px solid #ddd;
-  background-color: #fff;
-  color: #333;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-white);
+  color: var(--color-dark);
   cursor: pointer;
   border-radius: 0.25rem;
   transition: all 0.2s;
   font-size: 0.9rem;
   min-width: 2.5rem;
   text-align: center;
-  font-family: 'Rubik', sans-serif; /* Aplicamos Rubik a los botones */
-  /* box-shadow: inset 0px 0px 10px 1px var(--color-button-shadow) */
+  font-family: 'Rubik', sans-serif;
 }
 
-.transaction-table-ark-table-container [data-part="ellipsis"] {
-  padding: 0.5rem 0.75rem;
-  border: 1px solid #ddd;
-  background-color: #fff;
-  color: #333;
-  cursor: pointer;
-  border-radius: 0.25rem;
-  transition: all 0.2s;
-  font-size: 0.9rem;
-  min-width: 2.5rem;
-  text-align: center;
-    font-family: 'Rubik', sans-serif; /* Aplicamos Rubik a los botones */
-}
-
-.transaction-table-ark-table-container .transaction-table-ellipsis-button {
-  padding: 0.5rem 0.75rem;
-  border: 1px solid #ddd;
-  color: #ffffff;
-  cursor: pointer;
-  border-radius: 0.25rem;
-  transition: all 0.2s;
-  font-size: 0.9rem;
-  min-width: 2.5rem; /* Asegura un ancho mínimo para alinear los números */
-  text-align: center; /* Centra el texto dentro del botón */
-  font-family: 'Rubik', sans-serif; /* Aplicamos Rubik a los botones */
+.transaction-table-pagination-container .transaction-table-ellipsis-button {
+  color: var(--color-white);
   background-color: var(--color-button-shadow);
 }
 
-.transaction-table-ark-table-container .transaction-table-ellipsis-button:hover {
-  background-color: var(--selected) !important;
+.transaction-table-pagination-container .transaction-table-ellipsis-button:hover,
+.transaction-table-pagination-container [data-part="item"]:hover,
+.transaction-table-pagination-container [data-part="prev-trigger"]:hover,
+.transaction-table-pagination-container [data-part="next-trigger"]:hover {
+  background-color: var(--color-button-hover);
 }
 
-.transaction-table-ark-table-container [data-part="prev-trigger"],
-.transaction-table-ark-table-container [data-part="next-trigger"] {
-  padding: 0.5rem 0.75rem;
-  border: 1px solid #ddd;
+.transaction-table-pagination-container [data-part="prev-trigger"],
+.transaction-table-pagination-container [data-part="next-trigger"] {
   background-color: var(--selected);
-  color: #ffffff;
-  cursor: pointer;
-  border-radius: 0.25rem;
-  transition: all 0.2s;
-  font-size: 0.9rem;
-  min-width: 2.5rem;
-  text-align: center;
-  font-weight: 500; /* Reducimos el grosor a 500 */
-    font-family: 'Rubik', sans-serif; /* Aplicamos Rubik a los botones */
+  color: var(--color-white);
+  font-weight: 500;
 }
 
-.transaction-table-ark-table-container [data-part="item"] {
-  background-color: #e0e0e0;
-}
-
-.transaction-table-ark-table-container [data-part="item"]:hover {
-  background-color: #e0e0e0;
-}
-
-.transaction-table-ark-table-container [data-part="item"][data-selected] {
+.transaction-table-pagination-container [data-part="item"][data-selected] {
   background-color: var(--selected);
-  color: #fff;
-  font-size: 1.3em;
+  color: var(--color-white);
+  font-weight: bold;
 }
 
-.transaction-table-ark-table-container [data-part="prev-trigger"][data-disabled],
-.transaction-table-ark-table-container [data-part="next-trigger"][data-disabled] {
+.transaction-table-pagination-container [data-part="prev-trigger"][data-disabled],
+.transaction-table-pagination-container [data-part="next-trigger"][data-disabled] {
   opacity: 0.5;
   cursor: not-allowed;
 }

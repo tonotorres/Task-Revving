@@ -12,11 +12,11 @@
 }
 
 .logo {
-  height: 30px; /* Ajusta la altura del logo */
+  height: 45px; /* Ajusta la altura del logo */
 }
 
 .user-profile {
-  /* Estilos para el perfil de usuario */
+  height: 50px;
 }
 
 .user-profile button {
@@ -41,8 +41,8 @@
 }
 
 .user-avatar {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
 }
 

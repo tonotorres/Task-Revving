@@ -2,13 +2,14 @@
 import React from 'react';
 import { Menu } from '@ark-ui/react/menu';
 import './Header.css';
-import alexAvatar from '../assets/images/profile/alex.png'; // Importa la imagen
+import alexAvatar from '../assets/images/profile/alex.png'; 
+import logo from '../assets/images/profile/logo.png';
 
 function Header() {
   return (
     <header className="app-header">
       <div className="logo-container">
-        <img src="/logo.png" alt="Logo de la Empresa" className="logo" />
+        <img src={logo} alt="Logo de la Empresa" className="logo" />
       </div>
 
       <div className="user-profile">

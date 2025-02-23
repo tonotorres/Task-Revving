@@ -32,7 +32,7 @@
   position: relative;
   z-index: 1;
   border-radius: 3px;
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
   transition: background-color 0.3s;
   font-size: 1.9em;
   margin-inline: 0.3rem;
@@ -58,7 +58,7 @@
   left: 50%;
   transform: translateX(-50%);
   width: calc(100% + 2rem);
-  height: 2px;
+  height: 4px;
   background-color: var(--color-button-shadow);
   z-index: 0;
 }

@@ -5,10 +5,10 @@ import availableBalancesData from '../assets/data/availableBalances';
 import pdfReports from '../assets/data/pdfReports';
 import { generateMultiplePDFs } from '../utils/pdfGenerator';
 import pdfIcon from '../assets/images/icons/pdf.svg';
-import searchIcon from '../assets/images/icons/search.svg';
 import filterIcon from '../assets/images/icons/filters.svg';
 import { Slider } from '@ark-ui/react';
 import gsap from 'gsap';
+import SearchInput from './SearchInput';
 
 function CombinedComponent() {
     const [revenueSources, setRevenueSources] = useState([]);
@@ -96,7 +96,7 @@ function CombinedComponent() {
                     gsap.to(card, {
                         opacity: 1,
                         height: 'auto',
-                        duration: 0.3, 
+                        duration: 0.3,
                         display: 'block',
                         overwrite: true,
                     });
@@ -176,16 +176,10 @@ function CombinedComponent() {
             <div className="combined-component-header">
                 <h2>Revenue Sources and Available Balances</h2>
                 <div className="header-actions">
-                    <div className="search-container">
-                        <img src={searchIcon} alt="Search Icon" className="search-icon" />
-                        <input
-                            type="text"
-                            placeholder="Search revenue sources..."
-                            value={searchTerm}
-                            onChange={handleSearch}
-                            className="combined-component-search"
-                        />
-                    </div>
+                    <SearchInput
+                        searchTerm={searchTerm}
+                        onSearchChange={handleSearch}
+                    />
                     <div className="download-and-filter">
                         <div className="tooltip-container">
                             <button

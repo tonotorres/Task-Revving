@@ -10,6 +10,7 @@
   --selected: #A9AFFF;
   --color-white: #FFFFFF;
   --color-light-gray: #fdf6f6;
+  --color-light-white: #fff8f8;
   --color-border: #DDDDDD;
 }
 
@@ -21,7 +22,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #fff;
+  background: var(--color-light-white);
   background-image: radial-gradient(#9999992f 5%, transparent 0);
   background-size: 35px 35px;
 }
