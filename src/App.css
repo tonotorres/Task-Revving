@@ -1,38 +1,91 @@
+/* App.css */
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Container for the tabs */
+.tabs-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-top: 4rem;
 }
 
-.App-link {
-  color: #61dafb;
+/* List of tabs */
+.tabs-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: fit-content;
+  margin: 0 auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Style for each tab (trigger) */
+.tabs-trigger {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-weight: bold;
+  color: #555;
+  transition: all 0.2s ease;
+  position: relative;
+  z-index: 1;
+  border-radius: 3px;
+  margin-bottom: 1em;
+  transition: background-color 0.3s;
+  font-size: 1.9em;
+  margin-inline: 0.3rem;
+
+}
+
+/* Style for the active tab (usando aria-selected="true") */
+.tabs-trigger[aria-selected="true"] {
+  color: var(--color-light-gray);
+  background-color: var(--selected);
+}
+
+.tabs-trigger:hover {
+  color: #595959;
+  background-color: var(--color-button-hover);
+}
+
+/* Line underneath tabs */
+.tabs-list::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% + 2rem);
+  height: 2px;
+  background-color: var(--color-button-shadow);
+  z-index: 0;
+}
+
+/* Container for tab content */
+.tabs-content-wrapper {
+  padding: 1rem;
+}
+
+.tabs-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  min-width: 80vw;
+  opacity: 0; /* Initially hidden */
+  transition: opacity 1s ease-in-out; /* Smooth transition */
+}
+
+.tabs-content[data-state="open"] {
+  opacity: 1; /* Visible when active */
+  position: relative; /* Ensure correct stacking context */
+}
+
+.tabs-content[data-state="close"] {
+  opacity: 0; /* Visible when active */
+  position: relative; /* Ensure correct stacking context */
 }

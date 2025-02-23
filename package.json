@@ -3,13 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ark-ui/react": "^4.9.2",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
-    "@testing-library/user-event": "^13.5.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-scripts": "5.0.1",
+    "@testing-library/user-event": "^14.6.1",
+    "@zag-js/react": "^0.82.2",
+    "axios": "^1.7.9",
+    "gsap": "^3.12.7",
+    "jspdf": "^2.5.2",
+    "jspdf-autotable": "^3.8.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sortablejs": "^1.15.6",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -35,5 +41,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-scripts": "^5.0.1"
   }
 }

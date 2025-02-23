@@ -1,0 +1,142 @@
+/* src/components/TransactionTable.css */
+.transaction-table-ark-table-container {
+  width: 80vw;
+  min-height: 60vh;
+  margin: 0 auto;
+  display: grid;
+  justify-content: center;
+  overflow-x: visible;
+  font-family: 'Rubik', sans-serif; /* Aplicamos Rubik al contenedor */
+}
+
+.transaction-table-ark-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  border: 1px solid #f5f5f5;
+  width: 80vw;
+  text-align: center;
+}
+
+.transaction-table-ark-table-header {
+  background-color: #f0f0f0;
+  padding: 0.75rem;
+  font-weight: 500; /* Reducimos el grosor a 500 */
+  cursor: pointer;
+  color: #333; /* Cambiamos el color del texto */
+}
+
+.transaction-table-ark-table-row:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.transaction-table-ark-table-cell {
+  padding: 0.75rem;
+  border-top: 1px solid #ddd;
+  color: #555; /* Cambiamos el color del texto */
+}
+
+.transaction-table-ghost {
+  opacity: 0.7; /* Aumentamos la opacidad */
+  background: #c8ebfb;
+  border: 1px dashed #7abeff;
+}
+
+.transaction-table-pagination-container {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+  font-family: 'Rubik', sans-serif; /* Aplicamos Rubik al contenedor de la paginación */
+}
+
+.transaction-table-ark-table-container [data-part="root"] {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.transaction-table-ark-table-container [data-part="item"] {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  transition: all 0.2s;
+  font-size: 0.9rem;
+  min-width: 2.5rem;
+  text-align: center;
+  font-family: 'Rubik', sans-serif; /* Aplicamos Rubik a los botones */
+  /* box-shadow: inset 0px 0px 10px 1px var(--color-button-shadow) */
+}
+
+.transaction-table-ark-table-container [data-part="ellipsis"] {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  transition: all 0.2s;
+  font-size: 0.9rem;
+  min-width: 2.5rem;
+  text-align: center;
+    font-family: 'Rubik', sans-serif; /* Aplicamos Rubik a los botones */
+}
+
+.transaction-table-ark-table-container .transaction-table-ellipsis-button {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ddd;
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  transition: all 0.2s;
+  font-size: 0.9rem;
+  min-width: 2.5rem; /* Asegura un ancho mínimo para alinear los números */
+  text-align: center; /* Centra el texto dentro del botón */
+  font-family: 'Rubik', sans-serif; /* Aplicamos Rubik a los botones */
+  background-color: var(--color-button-shadow);
+}
+
+.transaction-table-ark-table-container .transaction-table-ellipsis-button:hover {
+  background-color: var(--selected) !important;
+}
+
+.transaction-table-ark-table-container [data-part="prev-trigger"],
+.transaction-table-ark-table-container [data-part="next-trigger"] {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ddd;
+  background-color: var(--selected);
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  transition: all 0.2s;
+  font-size: 0.9rem;
+  min-width: 2.5rem;
+  text-align: center;
+  font-weight: 500; /* Reducimos el grosor a 500 */
+    font-family: 'Rubik', sans-serif; /* Aplicamos Rubik a los botones */
+}
+
+.transaction-table-ark-table-container [data-part="item"] {
+  background-color: #e0e0e0;
+}
+
+.transaction-table-ark-table-container [data-part="item"]:hover {
+  background-color: #e0e0e0;
+}
+
+.transaction-table-ark-table-container [data-part="item"][data-selected] {
+  background-color: var(--selected);
+  color: #fff;
+  font-size: 1.3em;
+}
+
+.transaction-table-ark-table-container [data-part="prev-trigger"][data-disabled],
+.transaction-table-ark-table-container [data-part="next-trigger"][data-disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
