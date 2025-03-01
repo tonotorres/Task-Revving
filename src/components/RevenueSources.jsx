@@ -124,12 +124,19 @@ function CombinedComponent() {
     };
 
     const handleDownloadSelected = () => {
+        console.log(selectedSources)
+        console.log(revenueSources)
+        console.log(pdfReports)
         const selectedReports = selectedSources.map(sourceId => {
             const source = revenueSources.find(s => s.revenue_source_id === sourceId);
+            if (!source) return undefined; // Skip if source is not found
+    
             return pdfReports.find(report => report.revenue_source_name === source.revenue_source_name);
-        });
+        }).filter(report => report !== undefined); // Filter out undefined values
+    
         generateMultiplePDFs(selectedReports);
     };
+    
     const isDownloadDisabled = selectedSources.length === 0;
 
     const getCurrencySymbol = (currencyCode) => {

@@ -1,11 +1,13 @@
-// src/components/Header.jsx
 import React from 'react';
 import { Menu } from '@ark-ui/react/menu';
 import './Header.css';
 import alexAvatar from '../assets/images/profile/alex.png'; 
 import logo from '../assets/images/profile/logo.png';
+import { useTheme } from '../contexts/ThemeContext';
 
 function Header() {
+  const { isDarkMode, toggleDarkMode } = useTheme();
+
   return (
     <header className="app-header">
       <div className="logo-container">
@@ -17,7 +19,7 @@ function Header() {
           <Menu.Trigger style={{ borderRadius: '5px' }}>
             <div className="user-info">
               <img
-                src={alexAvatar} // Usa la variable importada
+                src={alexAvatar}
                 alt="Avatar de Usuario"
                 className="user-avatar"
               />
@@ -28,7 +30,9 @@ function Header() {
             <Menu.Content className="menu-content">
               <Menu.Item value="profile" className="menu-item">Ver Perfil</Menu.Item>
               <Menu.Item value="settings" className="menu-item">Configuración</Menu.Item>
-              <Menu.Item value="dark_mode" className="menu-item">Modo oscuro</Menu.Item>
+              <Menu.Item value="dark_mode" className="menu-item" onClick={toggleDarkMode}>
+                {isDarkMode ? 'Modo claro' : 'Modo oscuro'}
+              </Menu.Item>
               <Menu.Separator className="menu-separator" />
               <Menu.Item value="logout" className="menu-item">Cerrar Sesión</Menu.Item>
             </Menu.Content>

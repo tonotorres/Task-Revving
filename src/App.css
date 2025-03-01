@@ -27,7 +27,7 @@
   background-color: transparent;
   cursor: pointer;
   font-weight: bold;
-  color: #555;
+  color: var(--color-dark-black);
   transition: all 0.2s ease;
   position: relative;
   z-index: 1;
@@ -41,12 +41,12 @@
 
 /* Style for the active tab (usando aria-selected="true") */
 .tabs-trigger[aria-selected="true"] {
-  color: var(--color-light-gray);
+  color: var(--color-dark-black);
   background-color: var(--selected);
 }
 
 .tabs-trigger:hover {
-  color: #595959;
+  color: var(--color-dark-black);
   background-color: var(--color-button-hover);
 }
 

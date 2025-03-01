@@ -22,7 +22,7 @@
 .user-profile button {
   box-shadow: 0 4px 6px var(--color-button-shadow);
   border: 0;
-  background-color: var(--color-white);
+  background-color: var(--color-button-white);
 }
 .user-info {
   min-width: 100px;
@@ -38,6 +38,7 @@
   padding-left: 1em;
   font-weight: 700; /* Rubik Bold */
   font-size: 1rem;
+  color: var(--color-dark);
 }
 
 .user-avatar {
@@ -67,6 +68,7 @@
   text-align: left;
   border-radius: 3px;
   background-color: var(--color-white);
+  color: var(--color-dark);
 }
 
 .menu-item:hover {

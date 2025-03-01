@@ -106,7 +106,7 @@
   padding: 0.5rem 0.75rem;
   border: 1px solid var(--color-border);
   background-color: var(--color-white);
-  color: var(--color-dark);
+  color: var(--color-dark-black);
   cursor: pointer;
   border-radius: 0.25rem;
   transition: all 0.2s;
@@ -117,7 +117,7 @@
 }
 
 .transaction-table-pagination-container .transaction-table-ellipsis-button {
-  color: var(--color-white);
+  color: var(--color-dark-black);
   background-color: var(--color-button-shadow);
 }
 

@@ -26,5 +26,21 @@
     max-width: 300px;
     transition: width 0.3s ease;
     box-shadow: 0 4px 6px var(--color-button-shadow);
+    color: var(--color-dark-black);
   }
   
+  .search-input::placeholder {
+    color: var(--color-dark-black);
+    opacity: 1; /* Para Firefox */
+  }
+  
+  /* Para navegadores más antiguos */
+  .search-input::-webkit-input-placeholder {
+    color: var(--color-dark-black);
+  }
+  .search-input::-moz-placeholder {
+    color: var(--color-dark-black);
+  }
+  .search-input::-ms-input-placeholder {
+    color: var(--color-dark-black);
+  }

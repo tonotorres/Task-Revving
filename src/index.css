@@ -7,13 +7,36 @@
   --color-dark-black: #4C4C4C;
   --color-button-shadow: rgba(155, 134, 212, 0.449);
   --color-button-hover: rgba(155, 134, 212, 0.127);
+  --color-button-white: #fff8f8;
   --selected: #A9AFFF;
   --color-white: #FFFFFF;
   --color-light-gray: #fdf6f6;
   --color-light-white: #fff8f8;
   --color-border: #DDDDDD;
+  --transition-speed: 0.4s;
 }
 
+[data-theme="dark"] {
+  --color-header-bg: #2C2F4A;
+  --color-dark: #A9AFFF;
+  --color-dark-black: #E0E0E0;
+  --color-button-shadow: rgba(155, 134, 212, 0.2);
+  --color-button-hover: rgba(155, 134, 212, 0.3);
+  --color-button-white: rgba(155, 134, 212, 0.3);
+  --selected: #696EAD;
+  --color-white: #1A1A1A;
+  --color-light-gray: #2A2A2A;
+  --color-light-white: #333333;
+  --color-border: #555555;
+  --transition-speed: 0.4s;
+}
+
+* {
+  transition: background-color var(--transition-speed) ease,
+              color var(--transition-speed) ease,
+              border-color var(--transition-speed) ease,
+              box-shadow var(--transition-speed) ease;
+}
 
 body {
   margin: 0;
