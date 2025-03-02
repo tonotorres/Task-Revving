@@ -89,3 +89,10 @@
   opacity: 0; /* Visible when active */
   position: relative; /* Ensure correct stacking context */
 }
+
+@media (max-width: 768px) {
+
+  .tabs-content {
+    padding-inline: 0;
+  }
+}

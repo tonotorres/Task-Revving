@@ -6,6 +6,8 @@ import Sortable from 'sortablejs';
 import SearchInput from './SearchInput';
 import DatePickerComponent from './DatePickerComponent';
 import TransactionChart from './TransactionChart'; // Import the TransactionChart component
+import arrow_right from '../assets/images/icons/arrow_forward.svg';
+
 
 function TransactionTable() {
     const [transactions, setTransactions] = useState([]);
@@ -191,7 +193,7 @@ function TransactionTable() {
                         onPageChange={handlePageChange}
                     >
                         <Pagination.PrevTrigger>
-                            Anterior
+                            <img src={arrow_right} alt="arrow left" className="arrow arrow-left" />
                         </Pagination.PrevTrigger>
                         {getVisiblePageNumbers().map((page, index) =>
                             page === '-10' || page === '+10' ? (
@@ -209,7 +211,7 @@ function TransactionTable() {
                             )
                         )}
                         <Pagination.NextTrigger>
-                            Siguiente
+                            <img src={arrow_right} alt="arrow right" className="arrow" />
                         </Pagination.NextTrigger>
                     </Pagination.Root>
                 </div>

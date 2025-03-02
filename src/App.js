@@ -10,8 +10,8 @@ import './App.css';
 function App() {
     const [exchangeRates, setExchangeRates] = useState({});
     const currencies = ['EUR', 'GBP', 'USD'];
-    const apiKey = 'GeAHwcpum5CWAZICOmJ4G33XdO4WPCVD'; 
-    // const apiKey = ''; 
+    // const apiKey = 'GeAHwcpum5CWAZICOmJ4G33XdO4WPCVD'; 
+    const apiKey = ''; 
 
     useEffect(() => {
         async function fetchExchangeRates() {
@@ -67,10 +67,10 @@ function App() {
                     <Tabs.Root defaultValue="transactions">
                         <Tabs.List className="tabs-list">
                             <Tabs.Trigger className="tabs-trigger" value="transactions">
-                                Transacciones
+                            Transactions
                             </Tabs.Trigger>
                             <Tabs.Trigger className="tabs-trigger" value="revenueSources">
-                                Fuentes de Ingresos
+                                Revenues
                             </Tabs.Trigger>
                         </Tabs.List>
 

@@ -55,6 +55,14 @@ code {
     monospace;
 }
 
+.arrow {
+  width: 24px;
+  height: 24px;
+}
+
+.arrow-left {
+  transform: scaleX(-1);
+}
 .green {
   color: green;
 }

@@ -103,7 +103,7 @@
 .transaction-table-pagination-container .transaction-table-ellipsis-button,
 .transaction-table-pagination-container [data-part="prev-trigger"],
 .transaction-table-pagination-container [data-part="next-trigger"] {
-  padding: 0.5rem 0.75rem;
+  padding: 0.4rem;
   border: 1px solid var(--color-border);
   background-color: var(--color-white);
   color: var(--color-dark-black);
@@ -145,4 +145,88 @@
 .transaction-table-pagination-container [data-part="next-trigger"][data-disabled] {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* Media queries for mobile responsiveness */
+@media (max-width: 768px) {
+  .transaction-table-ark-table-container {
+    width: 95vw;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start; /* Align items to the start */
+  }
+
+  .transaction-table-controls {
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: 1rem;
+    position: sticky; /* Stick the controls to the top */
+    top: 0;
+    z-index: 10; /* Ensure it's above the table */
+    padding-bottom: 0.5rem; /* Add some padding */
+  }
+
+  .transaction-table-search {
+    max-width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .transaction-table-datepicker {
+    max-width: 100%;
+    justify-content: stretch;
+    margin-bottom: 1rem;
+  }
+
+  .transaction-table-pagination-container {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .transaction-table-ark-table {
+    border-radius: 0.75rem; /* Smaller border radius for mobile */
+    font-size: 0.85rem; /* Slightly smaller font size for readability */
+    width: 100%; /* Ensure full width */
+    display: block; /* Make the table a block-level element */
+    overflow-x: auto; /* Enable horizontal scrolling only for the table */
+  }
+
+  .transaction-table-ark-table-header {
+    padding: 0.75rem;
+    font-size: 1em;
+    white-space: nowrap; /* Prevent header text from wrapping */
+  }
+
+  .transaction-table-ark-table-cell {
+    padding: 0.75rem;
+    white-space: nowrap; /* Prevent cell text from wrapping */
+  }
+
+  .toggle-chart-button {
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Smaller screens */
+@media (max-width: 480px) {
+  .transaction-table-ark-table-header {
+    font-size: 0.9em;
+  }
+
+  .transaction-table-ark-table-cell {
+    padding: 0.5rem;
+  }
+
+  .transaction-table-pagination-container [data-part="item"],
+  .transaction-table-pagination-container [data-part="ellipsis"],
+  .transaction-table-pagination-container .transaction-table-ellipsis-button,
+  .transaction-table-pagination-container [data-part="prev-trigger"],
+  .transaction-table-pagination-container [data-part="next-trigger"] {
+    padding: 0.3rem;
+    font-size: 0.8rem;
+    min-width: 2rem;
+  }
 }

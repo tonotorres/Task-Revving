@@ -25,6 +25,9 @@ function RevenueSources({ exchangeRates }) {
 
     const [filteredSources, setFilteredSources] = useState([]);
     const [filteredBalances, setFilteredBalances] = useState([]);
+    const [showCurrencyModal, setShowCurrencyModal] = useState(false);
+    const [selectedConversionCurrency, setSelectedConversionCurrency] = useState('EUR'); // Valor por defecto
+    const conversionCurrencies = ['EUR', 'GBP', 'USD']; // Lista de monedas para la conversión
 
     useEffect(() => {
         const fetchData = async () => {
@@ -85,6 +88,16 @@ function RevenueSources({ exchangeRates }) {
     };
 
     const handleDownloadSelected = () => {
+        setShowCurrencyModal(true);
+    };
+
+    const handleCurrencySelection = (currency) => {
+        setSelectedConversionCurrency(currency);
+        setShowCurrencyModal(false); // Cierra el modal
+        generatePDF(currency);
+    };
+
+    const generatePDF = (currency) => {
         const selectedReports = selectedSources.map(sourceId => {
             const source = revenueSources.find(s => s.revenue_source_id === sourceId);
             if (!source) return undefined;
@@ -92,7 +105,7 @@ function RevenueSources({ exchangeRates }) {
             return pdfReports.find(report => report.revenue_source_name === source.revenue_source_name);
         }).filter(report => report !== undefined);
 
-        generateMultiplePDFs(selectedReports, exchangeRates);
+        generateMultiplePDFs(selectedReports, exchangeRates, currency);
     };
 
     const isDownloadDisabled = selectedSources.length === 0;
@@ -206,6 +219,23 @@ function RevenueSources({ exchangeRates }) {
                     );
                 })}
             </div>
+
+             {/* Modal de selección de moneda */}
+             {showCurrencyModal && (
+                <div className="currency-modal">
+                    <h3>Select Conversion Currency</h3>
+                    <div className="currency-options">
+                        {conversionCurrencies.map(currency => (
+                            <button
+                                key={currency}
+                                onClick={() => handleCurrencySelection(currency)}
+                            >
+                                {currency}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

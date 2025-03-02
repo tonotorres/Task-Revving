@@ -141,6 +141,39 @@
   padding-bottom: 1em;
 }
 
+/* Styles for Modal*/
+
+.currency-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.currency-options {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.currency-options button {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.currency-options button:hover {
+  background-color: #e9e9e9;
+}
+
 /* Styles for Slider*/
 
 [data-part="thumb"] {
@@ -247,4 +280,175 @@
     font-size: 0.8em;
     z-index: 10; /* Ensure it's above the thumb */
     white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .combined-component-container {
+    padding: 10px;
+  }
+
+  .combined-component-header {
+    margin-bottom: 10px;
+  }
+
+  .combined-component-header h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+
+  .header-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .download-and-filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-items: stretch;
+    gap: 10px;
+    margin-top: 2em;
+
+  }
+
+  .download-selected-btn {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .filter-wrapper {
+    /* width: 100%; */
+  }
+
+  .filter-button {
+    padding: 0.2em;
+  }
+
+  .filter-icon {
+    width: 25px;
+    height: 25px;
+  }
+
+  .tooltip {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+
+  .filter-container {
+    left:  -250px;
+    /* width: 100%; */
+    padding: 8px;
+    margin-top: 2px;
+  }
+
+  .filter-container h3 {
+    font-size: 1em;
+    margin-bottom: 10px;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+  }
+
+  .currency-modal {
+    width: 80%;
+    padding: 15px;
+  }
+
+  .currency-options {
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .currency-options button {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+
+  .tooltip-container {
+  }
+
+  [data-part="thumb"] {
+    width: 16px;
+    height: 16px;
+  }
+
+  [data-part="track"] {
+    height: 4px;
+  }
+
+  [data-part="range"] {
+    height: 4px;
+  }
+
+  .currency-filter-grid {
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    gap: 4px;
+  }
+
+  .currency-button {
+    font-size: 0.8em;
+    padding: 6px 8px;
+  }
+
+  .filter-card {
+    padding: 8px;
+    margin-bottom: 8px;
+  }
+
+  .filter-card h3 {
+    font-size: 1.2em;
+    margin-bottom: 4px;
+  }
+
+  .slider-container {
+    padding-bottom: 15px;
+    padding-top: 1.5em;
+  }
+
+  .slider-values {
+    font-size: 0.7em;
+  }
+
+  .slider-value-label {
+    top: -2em;
+    font-size: 0.7em;
+  }
+}
+
+/* Smaller screens */
+@media (max-width: 480px) {
+  .combined-component-header h2 {
+    font-size: 1.2em;
+  }
+
+  .download-selected-btn {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  .tooltip {
+    font-size: 10px;
+    padding: 3px 6px;
+  }
+
+  .filter-container h3 {
+    font-size: 0.9em;
+  }
+
+  .currency-modal {
+    width: 90%;
+    padding: 10px;
+  }
+
+  .currency-options button {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+
+  .slider-values {
+    font-size: 0.6em;
+  }
+
+  .slider-value-label {
+    font-size: 0.6em;
+  }
 }

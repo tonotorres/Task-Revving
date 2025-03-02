@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { DatePicker } from '@ark-ui/react/date-picker';
 import './DatePickerComponent.css';
 import calendar from '../assets/images/icons/calendar.svg';
+import arrow_left from '../assets/images/icons/arrow_back.svg';
+import arrow_right from '../assets/images/icons/arrow_forward.svg';
 
 const DatePickerComponent = ({ onDateRangeChange }) => {
     const [startDateDisplay, setStartDateDisplay] = useState('');
@@ -55,11 +57,11 @@ const DatePickerComponent = ({ onDateRangeChange }) => {
                                 {(datePicker) => (
                                     <>
                                         <DatePicker.ViewControl>
-                                            <DatePicker.PrevTrigger>Anterior</DatePicker.PrevTrigger>
+                                            <DatePicker.PrevTrigger><img src={arrow_right} alt="arrow left" className="arrow arrow-left" /></DatePicker.PrevTrigger>
                                             <DatePicker.ViewTrigger>
                                                 <DatePicker.RangeText />
                                             </DatePicker.ViewTrigger>
-                                            <DatePicker.NextTrigger>Siguiente</DatePicker.NextTrigger>
+                                            <DatePicker.NextTrigger><img src={arrow_right} alt="arrow right" className="arrow" /></DatePicker.NextTrigger>
                                         </DatePicker.ViewControl>
                                         <DatePicker.Table>
                                             <DatePicker.TableHead>
@@ -90,11 +92,11 @@ const DatePickerComponent = ({ onDateRangeChange }) => {
                                 {(datePicker) => (
                                     <>
                                         <DatePicker.ViewControl>
-                                            <DatePicker.PrevTrigger>Anterior</DatePicker.PrevTrigger>
+                                            <DatePicker.PrevTrigger><img src={arrow_right} alt="arrow left" className="arrow arrow-left" /></DatePicker.PrevTrigger>
                                             <DatePicker.ViewTrigger>
                                                 <DatePicker.RangeText />
                                             </DatePicker.ViewTrigger>
-                                            <DatePicker.NextTrigger>Siguiente</DatePicker.NextTrigger>
+                                            <DatePicker.NextTrigger><img src={arrow_right} alt="arrow right" className="arrow" /></DatePicker.NextTrigger>
                                         </DatePicker.ViewControl>
                                         <DatePicker.Table>
                                             <DatePicker.TableBody>
@@ -118,11 +120,11 @@ const DatePickerComponent = ({ onDateRangeChange }) => {
                                 {(datePicker) => (
                                     <>
                                         <DatePicker.ViewControl>
-                                            <DatePicker.PrevTrigger>Anterior</DatePicker.PrevTrigger>
+                                            <DatePicker.PrevTrigger><img src={arrow_right} alt="arrow left" className="arrow arrow-left" /></DatePicker.PrevTrigger>
                                             <DatePicker.ViewTrigger>
                                                 <DatePicker.RangeText />
                                             </DatePicker.ViewTrigger>
-                                            <DatePicker.NextTrigger>Siguiente</DatePicker.NextTrigger>
+                                            <DatePicker.NextTrigger><img src={arrow_right} alt="arrow right" className="arrow" /></DatePicker.NextTrigger>
                                         </DatePicker.ViewControl>
                                         <DatePicker.Table>
                                             <DatePicker.TableBody>
