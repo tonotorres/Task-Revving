@@ -1,4 +1,4 @@
-/* src/components/CombinedComponent.css */
+/* src/components/RevenueSources.css */
 .combined-component-container {
   padding: 20px;
 }
@@ -72,6 +72,9 @@
   height: 30px;
 }
 
+[data-theme="dark"] .filter-icon {
+  filter: invert(1) brightness(1.5);
+}
 .tooltip-container {
   position: relative;
   display: inline-block;
@@ -109,88 +112,6 @@
   border-width: 5px;
   border-style: solid;
   border-color: #333 transparent transparent transparent;
-}
-
-/* New styles for amount layout */
-.available-amount-label {
-  font-size: 0.8em;
-  color: var(--color-dark-black);
-  margin-bottom: 5px;
-}
-
-.available-amount-value {
-  font-size: 1.5em;
-  font-weight: bold;
-  margin-bottom: 0.4em;
-}
-
-/* Style for selected count */
-.selected-count {
-  position: absolute;
-  top: -0.5em;
-  right: -0.5em;
-  background-color: var(--color-header-bg);
-  color: var(--color-dark-black);
-  border-radius: 50%;
-  padding: 0.2em 0.6em;
-  font-size: 1em;
-  font-weight: bold;
-}
-
-/* Style for PDF Icon on cards*/
-.card-pdf-icon {
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  top: 0.5rem;
-  left: 0.5rem;
-}
-
-.pdf-icon {
-  width: 20px; /* Adjust the width as needed */
-  height: 20px; /* Adjust the height as needed */
-  margin-right: 5px;
-  vertical-align: middle;
-  display: inline-block;
-  filter: invert(1) brightness(1.8);
-}
-
-/* General card styling */
-.combined-component-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-}
-
-.combined-component-card {
-  border: 1px solid var(--color-button-shadow);
-  border-radius: 10px;
-  padding: 15px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-align: center; /* Center content */
-  position: relative; /* Make position relative to locate icon on the corner */
-}
-
-.combined-component-card h3 {
-  font-size: 1.6em;
-  font-weight: 800;
-  color: var(--color-dark);
-  margin-bottom: 0.5rem;
-}
-
-.combined-component-card:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.combined-component-card.selected {
-  background-color: var(--color-button-hover);
-  border-color: var(--color-dark);
-}
-
-.combined-component-card.disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
 }
 
 .filter-container {
@@ -327,16 +248,3 @@
     z-index: 10; /* Ensure it's above the thumb */
     white-space: nowrap;
 }
-
-/* Añade esto al final de tu archivo CombinedComponent.css */
-
-.combined-component-card.no-balance {
-  opacity: 0.5;
-  background-color: #f0f0f0;
-  display: none;
-}
-
-.combined-component-card.no-balance:hover {
-  box-shadow: none;
-}
-

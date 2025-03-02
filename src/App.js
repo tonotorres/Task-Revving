@@ -10,8 +10,8 @@ import './App.css';
 function App() {
     const [exchangeRates, setExchangeRates] = useState({});
     const currencies = ['EUR', 'GBP', 'USD'];
-    // const apiKey = 'GeAHwcpum5CWAZICOmJ4G33XdO4WPCVD'; 
-    const apiKey = ''; 
+    const apiKey = 'GeAHwcpum5CWAZICOmJ4G33XdO4WPCVD'; 
+    // const apiKey = ''; 
 
     useEffect(() => {
         async function fetchExchangeRates() {

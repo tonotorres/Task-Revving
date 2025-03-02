@@ -17,7 +17,17 @@ function TransactionTable() {
     const pageSize = 10;
     const tableRef = useRef(null);
 
-    // Función para convertir dd-mm-yyyy a yyyy-mm-dd
+    // Función para convertir yyyy-mm-dd a dd-mm-yyyy
+    const formatDate = (dateString) => {
+        if (!dateString) return null;
+        const date = new Date(dateString);
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Los meses en JavaScript empiezan en 0
+        const year = date.getFullYear();
+        return `${day}-${month}-${year}`;
+    };
+
+    // Función para convertir dd-mm-yyyy a yyyy-mm-dd para el filtro
     const convertDateFormat = (dateString) => {
         if (!dateString) return null;
         const [day, month, year] = dateString.split('-');
@@ -227,7 +237,7 @@ function TransactionTable() {
                                 <td className="transaction-table-ark-table-cell">{transaction.customername}</td>
                                 <td className="transaction-table-ark-table-cell">{transaction.revenuesourcename}</td>
                                 <td className="transaction-table-ark-table-cell">{transaction.currencycode}</td>
-                                <td className="transaction-table-ark-table-cell">{transaction.transactiondate}</td>
+                                <td className="transaction-table-ark-table-cell">{formatDate(transaction.transactiondate)}</td>
                             </tr>
                         ))}
                     </tbody>
