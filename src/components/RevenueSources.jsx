@@ -10,7 +10,7 @@ import { Slider } from '@ark-ui/react';
 import gsap from 'gsap';
 import SearchInput from './SearchInput';
 
-function CombinedComponent() {
+function CombinedComponent({ exchangeRates }) {
     const [revenueSources, setRevenueSources] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedSources, setSelectedSources] = useState([]);
@@ -23,6 +23,8 @@ function CombinedComponent() {
     const availableCurrencies = ['EUR', 'GBP', 'USD'];
     const filterRef = useRef(null);
     const cardRefs = useRef([]);
+    const conversionRefs = useRef([]);
+    const [hoveredCardIndex, setHoveredCardIndex] = useState(null); // Track hovered card index
 
     // Initialize filteredSources and filteredBalances with an empty array
     const [filteredSources, setFilteredSources] = useState([]);
@@ -124,19 +126,16 @@ function CombinedComponent() {
     };
 
     const handleDownloadSelected = () => {
-        console.log(selectedSources)
-        console.log(revenueSources)
-        console.log(pdfReports)
         const selectedReports = selectedSources.map(sourceId => {
             const source = revenueSources.find(s => s.revenue_source_id === sourceId);
             if (!source) return undefined; // Skip if source is not found
-    
+
             return pdfReports.find(report => report.revenue_source_name === source.revenue_source_name);
         }).filter(report => report !== undefined); // Filter out undefined values
-    
+
         generateMultiplePDFs(selectedReports);
     };
-    
+
     const isDownloadDisabled = selectedSources.length === 0;
 
     const getCurrencySymbol = (currencyCode) => {
@@ -175,6 +174,78 @@ function CombinedComponent() {
             return 'orange';
         } else {
             return 'green';
+        }
+    };
+
+    const getConvertedAmount = (currencyCode, availableamount, index) => {
+        if (!exchangeRates || !currencyCode) return null;
+
+        // Define the order of currencies to cycle through
+        const conversionOrder = {
+            'EUR': ['USD', 'GBP'],
+            'USD': ['EUR', 'GBP'],
+            'GBP': ['EUR', 'USD']
+        };
+
+        const otherCurrencies = conversionOrder[currencyCode] || [];
+        const currentCurrencyIndex = hoveredCardIndex === index ? (hoveredCardIndex % otherCurrencies.length) : 0;
+        const targetCurrency = otherCurrencies[0];
+
+        const rateKey = `${currencyCode}_${targetCurrency}`;
+        const exchangeRate = exchangeRates[rateKey];
+
+        if (exchangeRate) {
+            return (availableamount * exchangeRate).toFixed(2);
+        } else {
+            return null;
+        }
+    };
+
+    const handleCardMouseEnter = (index) => {
+        setHoveredCardIndex(index);
+        const balance = filteredBalances.find(bal => bal.revenue_source_name === filteredSources[index]?.revenue_source_name);
+        if (balance) {
+            animateConversion(index, balance.currency_code, balance.availableamount);
+        }
+    };
+
+    const handleCardMouseLeave = () => {
+        setHoveredCardIndex(null);
+    };
+
+    const animateConversion = (index, currencyCode, availableamount) => {
+        const conversionElement = conversionRefs.current[index];
+        if (conversionElement && exchangeRates) {
+            const conversionOrder = {
+                'EUR': ['USD', 'GBP'],
+                'USD': ['EUR', 'GBP'],
+                'GBP': ['EUR', 'USD']
+            };
+
+            const otherCurrencies = conversionOrder[currencyCode] || [];
+            let targetCurrency = otherCurrencies[0];
+            const rateKey = `${currencyCode}_${targetCurrency}`;
+            const exchangeRate = exchangeRates[rateKey];
+
+            if (exchangeRate) {
+                const convertedAmount = (availableamount * exchangeRate).toFixed(2);
+                const newText = `≈ ${getCurrencySymbol(targetCurrency)}${convertedAmount}`;
+
+                gsap.to(conversionElement, {
+                    x: -conversionElement.offsetWidth,
+                    duration: 0.3,
+                    onComplete: () => {
+                        conversionElement.textContent = newText;
+                        gsap.fromTo(
+                            conversionElement,
+                            { x: conversionElement.offsetWidth },
+                            { x: 0, duration: 0.3 }
+                        );
+                    }
+                });
+            } else {
+                conversionElement.textContent = 'Conversion not available';
+            }
         }
     };
 
@@ -261,6 +332,8 @@ function CombinedComponent() {
                     const balance = filteredBalances.find(bal => bal.revenue_source_name === source.revenue_source_name);
                     const hasBalance = balance !== undefined;
                     const isSelected = selectedSources.includes(source.revenue_source_id);
+                    const convertedAmount = hasBalance ? getConvertedAmount(balance.currency_code, balance.availableamount, index) : null;
+                    const originalAmount = balance ? `${getCurrencySymbol(balance.currency_code)}${balance.availableamount}` : '';
 
                     return (
                         <div
@@ -268,15 +341,25 @@ function CombinedComponent() {
                             className={`combined-component-card ${isSelected ? 'selected' : ''}`}
                             onClick={() => handleCardClick(source.revenue_source_id)}
                             ref={el => (cardRefs.current[index] = el)}
+                            onMouseEnter={() => handleCardMouseEnter(index)}
+                            onMouseLeave={handleCardMouseLeave}
                         >
                             {isSelected && <img src={pdfIcon} alt="PDF Icon" className="card-pdf-icon" />}
                             <h3>{source.revenue_source_name}</h3>
                             {balance ? (
                                 <>
                                     <p className="available-amount-label">Available Amount</p>
-                                    <p className={`available-amount-value ${getColorClass(balance.availableamount)}`}>
-                                        {getCurrencySymbol(balance.currency_code)}{balance.availableamount}
-                                    </p>
+                                    <div className="amount-container">
+                                        <p className={`available-amount-value ${getColorClass(balance.availableamount)}`}>
+                                            {originalAmount}
+                                        </p>
+                                    </div>
+                                    <div
+                                        className="conversion-display"
+                                        ref={el => (conversionRefs.current[index] = el)}
+                                    >
+                                        {convertedAmount ? `≈ €${convertedAmount}` : 'Conversion not available'}
+                                    </div>
                                 </>
                             ) : (
                                 <p>No available amount</p>
