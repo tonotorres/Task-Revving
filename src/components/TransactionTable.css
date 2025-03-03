@@ -186,6 +186,13 @@
     margin-bottom: 1rem;
   }
 
+  
+  .transaction-table-pagination-container [data-part="root"] {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transform: translateX(0em);
+  }
   .transaction-table-ark-table {
     border-radius: 0.75rem; /* Smaller border radius for mobile */
     font-size: 0.85rem; /* Slightly smaller font size for readability */
