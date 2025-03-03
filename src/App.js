@@ -1,4 +1,3 @@
-// src/App.jsx
 import React, { useState, useEffect } from 'react';
 import { ThemeProvider } from './contexts/ThemeContext';
 import Header from './components/Header';
@@ -10,14 +9,13 @@ import './App.css';
 function App() {
     const [exchangeRates, setExchangeRates] = useState({});
     const currencies = ['EUR', 'GBP', 'USD'];
-    // const apiKey = 'GeAHwcpum5CWAZICOmJ4G33XdO4WPCVD'; 
-    const apiKey = ''; 
+    const apiKey = process.env.REACT_APP_API_KEY; // Usa la variable de entorno
 
     useEffect(() => {
         async function fetchExchangeRates() {
             try {
                 const response = await fetch(
-                    `https://api.apilayer.com/exchangerates_data/latest?symbols=${currencies.join(',')}&base=USD`,
+                    `https://api.apilayer.com/exchangerates_data/latest?symbols=${currencies.join(',')}&base=EUR`,
                     {
                         method: 'GET',
                         headers: {
@@ -25,23 +23,21 @@ function App() {
                         },
                     }
                 );
-
+    
                 const data = await response.json();
-
+                console.log('API Response Data:', data);
+    
                 if (data.success) {
-                    // Estructura los tipos de cambio en el formato que necesitas
                     const rates = {};
                     for (const fromCurrency of currencies) {
                         for (const toCurrency of currencies) {
                             if (fromCurrency !== toCurrency) {
-                                if (fromCurrency === 'USD') {
-                                    rates[`${fromCurrency}_${toCurrency}`] = data.rates[toCurrency];
+                                const key = `${fromCurrency}_${toCurrency}`;
+                                if (data.rates && data.rates[toCurrency]) {
+                                    const rate = data.rates[toCurrency] / data.rates[fromCurrency];
+                                    rates[key] = rate;
                                 } else {
-                                    // Necesitas un paso adicional para calcular el tipo de cambio
-                                    // si la moneda base no es USD
-                                    const rateFromUSD = data.rates[fromCurrency];
-                                    const rateToUSD = data.rates[toCurrency];
-                                    rates[`${fromCurrency}_${toCurrency}`] = rateToUSD / rateFromUSD;
+                                    console.warn(`Tipo de cambio no encontrado para ${key}`);
                                 }
                             }
                         }
@@ -55,9 +51,10 @@ function App() {
                 console.error('Error en la llamada a la API:', error);
             }
         }
-
+    
         fetchExchangeRates();
     }, []);
+    
 
     return (
         <ThemeProvider>
@@ -67,7 +64,7 @@ function App() {
                     <Tabs.Root defaultValue="transactions">
                         <Tabs.List className="tabs-list">
                             <Tabs.Trigger className="tabs-trigger" value="transactions">
-                            Transactions
+                                Transactions
                             </Tabs.Trigger>
                             <Tabs.Trigger className="tabs-trigger" value="revenueSources">
                                 Revenues

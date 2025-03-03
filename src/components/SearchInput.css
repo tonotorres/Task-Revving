@@ -1,6 +1,6 @@
 .search-container {
     flex-grow: 1;
-    margin-right: 20px;
+    /* margin-right: 20px; */
     display: flex;
     align-items: center;
     position: relative;
