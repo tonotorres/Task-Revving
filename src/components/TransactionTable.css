@@ -33,7 +33,7 @@
   flex: 1;
   display: flex;
   justify-content: flex-end;
-  /* max-width: 300px; */
+  max-width: 300px;
   position: relative;
 }
 
@@ -96,6 +96,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  transform: translateX(-4em);
 }
 
 .transaction-table-pagination-container [data-part="item"],

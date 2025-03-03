@@ -1,7 +1,7 @@
 import React, { memo, useState, useRef, useEffect } from 'react';
 import pdfIcon from '../assets/images/icons/pdf.svg';
 import gsap from 'gsap';
-import './RevenueSourceCard.css'; // Asegúrate de importar el archivo CSS
+import './RevenueSourceCard.css'; 
 
 const RevenueSourceCard = memo(
     ({
@@ -10,6 +10,7 @@ const RevenueSourceCard = memo(
         isSelected,
         handleCardClick,
         exchangeRates,
+        maxAmount, 
     }) => {
         const [isHovered, setIsHovered] = useState(false);
         const [convertedAmount, setConvertedAmount] = useState(null);
@@ -36,10 +37,9 @@ const RevenueSourceCard = memo(
 
         // Function to determine the color class based on available amount
         const getColorClass = (amount) => {
-            const maxAmount = 1000; // Assuming maxAmount is known or can be derived
             const firstThird = maxAmount / 3;
             const secondThird = 2 * firstThird;
-
+            console.log(maxAmount)
             if (amount <= firstThird) {
                 return 'red';
             } else if (amount <= secondThird) {

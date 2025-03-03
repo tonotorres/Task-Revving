@@ -26,8 +26,8 @@ function RevenueSources({ exchangeRates }) {
     const [filteredSources, setFilteredSources] = useState([]);
     const [filteredBalances, setFilteredBalances] = useState([]);
     const [showCurrencyModal, setShowCurrencyModal] = useState(false);
-    const [selectedConversionCurrency, setSelectedConversionCurrency] = useState('EUR'); // Valor por defecto
-    const conversionCurrencies = ['EUR', 'GBP', 'USD']; // Lista de monedas para la conversión
+    const [selectedConversionCurrency, setSelectedConversionCurrency] = useState('EUR');
+    const conversionCurrencies = ['EUR', 'GBP', 'USD'];
 
     useEffect(() => {
         const fetchData = async () => {
@@ -37,7 +37,9 @@ function RevenueSources({ exchangeRates }) {
             setRevenueSources(sortedData);
 
             const amounts = availableBalancesData.map(bal => bal.availableamount);
+            console.log("amounts",amounts)
             const calculatedMaxAmount = Math.max(...amounts, 0);
+            console.log("calculatedMaxAmount",calculatedMaxAmount)
             setMaxAmount(calculatedMaxAmount);
             setAmountFilterValue(calculatedMaxAmount);
 
@@ -73,7 +75,7 @@ function RevenueSources({ exchangeRates }) {
             return amountValid && currencyValid;
         });
         setFilteredBalances(newFilteredBalances);
-    }, [amountFilterValue, selectedCurrencies]);
+    }, [amountFilterValue, selectedCurrencies,revenueSources]);
 
     const handleSearch = (event) => {
         setSearchTerm(event.target.value);
@@ -215,6 +217,7 @@ function RevenueSources({ exchangeRates }) {
                             isSelected={selectedSources.includes(source.revenue_source_id)}
                             handleCardClick={handleCardClick}
                             exchangeRates={exchangeRates}
+                            maxAmount={maxAmount}
                         />
                     );
                 })}

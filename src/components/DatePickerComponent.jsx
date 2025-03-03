@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { DatePicker } from '@ark-ui/react/date-picker';
 import './DatePickerComponent.css';
 import calendar from '../assets/images/icons/calendar.svg';
-import arrow_left from '../assets/images/icons/arrow_back.svg';
 import arrow_right from '../assets/images/icons/arrow_forward.svg';
 
 const DatePickerComponent = ({ onDateRangeChange }) => {
@@ -20,48 +19,82 @@ const DatePickerComponent = ({ onDateRangeChange }) => {
         setInternalDates([initialStartDate, initialEndDate]);
 
         onDateRangeChange([initialStartDate, initialEndDate]); // Notificar al padre
-    }, [onDateRangeChange]); // El array de dependencias vacío asegura que esto se ejecute solo una vez
+    }, [onDateRangeChange]);
+
+    const handleInputChange = (event, index) => {
+        const value = event.target.value;
+        if (index === 0) {
+            setStartDateDisplay(value);
+        } else {
+            setEndDateDisplay(value);
+        }
+
+        // Validar formato dd-mm-yyyy
+        const dateRegex = /^\d{2}-\d{2}-\d{4}$/;
+        if (dateRegex.test(value)) {
+            const newDates = [...internalDates];
+            newDates[index] = value;
+            setInternalDates(newDates);
+            onDateRangeChange(newDates); // Notificar al padre
+        }
+    };
 
     const handleDateChange = (details) => {
         // Formatea las fechas usando valueAsString y el formato dd-mm-yyyy
-        const formattedDates = details.valueAsString.map(dateString => {
+        const formattedDates = details.valueAsString.map((dateString) => {
             if (dateString) {
                 const [month, day, year] = dateString.split('/');
                 return `${day}-${month}-${year}`;
             }
             return null;
         });
+
         setInternalDates(formattedDates);
+        setStartDateDisplay(formattedDates[0] || '');
+        setEndDateDisplay(formattedDates[1] || '');
+        onDateRangeChange(formattedDates); // Notificar al padre
     };
 
     return (
         <div className="date-picker-container">
             <DatePicker.Root selectionMode="range" onValueChange={handleDateChange}>
                 <div className="date-picker-inputs">
-                    <DatePicker.Input
-                        index={0}
+                    <input
+                        type="text"
                         placeholder="dd-mm-yyyy"
                         value={startDateDisplay}
+                        onChange={(e) => handleInputChange(e, 0)}
+                        className="date-input"
                     />
-                    <DatePicker.Input
-                        index={1}
+                    <span className="date-separator"> - </span>
+                    <input
+                        type="text"
                         placeholder="dd-mm-yyyy"
                         value={endDateDisplay}
+                        onChange={(e) => handleInputChange(e, 1)}
+                        className="date-input"
                     />
-                    <DatePicker.Trigger><img src={calendar} alt="Filter Icon" className="calendar-icon" /></DatePicker.Trigger>
+                    <DatePicker.Trigger>
+                        <img src={calendar} alt="Filter Icon" className="calendar-icon" />
+                    </DatePicker.Trigger>
                 </div>
                 <DatePicker.Positioner>
                     <DatePicker.Content>
+                        {/* Vista del calendario */}
                         <DatePicker.View view="day">
                             <DatePicker.Context>
                                 {(datePicker) => (
                                     <>
                                         <DatePicker.ViewControl>
-                                            <DatePicker.PrevTrigger><img src={arrow_right} alt="arrow left" className="arrow arrow-left" /></DatePicker.PrevTrigger>
+                                            <DatePicker.PrevTrigger>
+                                                <img src={arrow_right} alt="arrow left" className="arrow arrow-left" />
+                                            </DatePicker.PrevTrigger>
                                             <DatePicker.ViewTrigger>
                                                 <DatePicker.RangeText />
                                             </DatePicker.ViewTrigger>
-                                            <DatePicker.NextTrigger><img src={arrow_right} alt="arrow right" className="arrow" /></DatePicker.NextTrigger>
+                                            <DatePicker.NextTrigger>
+                                                <img src={arrow_right} alt="arrow right" className="arrow" />
+                                            </DatePicker.NextTrigger>
                                         </DatePicker.ViewControl>
                                         <DatePicker.Table>
                                             <DatePicker.TableHead>
